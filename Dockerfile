@@ -17,8 +17,8 @@
 # under the License.
 #
 
-FROM perftool/compile:cpp
+FROM shoothzj/compile:c
 
-COPY . /opt/signal-printer-c
+COPY signal-printer-c /opt/signal-printer-c
 
 CMD ["/opt/signal-printer-c"]

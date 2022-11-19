@@ -1,17 +1,19 @@
 #include <signal.h>
 #include <stdio.h>
+#include <unistd.h>
 
 static void print_signal_handler(int signo) {
-    printf("Received signal %d", signo);
+    printf("Received signal %d\n", signo);
 }
 
 static void signal_helper(int signo) {
     if (signal(signo, print_signal_handler) == SIG_ERR) {
-        printf("Error setting signal handler for %d", signo);
+        printf("Error setting signal handler for %d\n", signo);
     }
 }
 
 int main() {
+    printf("begin to catch signals\n");
     signal_helper(SIGABRT);
     signal_helper(SIGALRM);
     signal_helper(SIGBUS);
@@ -24,7 +26,6 @@ int main() {
     signal_helper(SIGINT);
     signal_helper(SIGIO);
     signal_helper(SIGIOT);
-    signal_helper(SIGKILL);
     signal_helper(SIGPIPE);
     signal_helper(SIGPOLL);
     signal_helper(SIGPROF);
@@ -32,7 +33,6 @@ int main() {
     signal_helper(SIGQUIT);
     signal_helper(SIGSEGV);
     signal_helper(SIGSTKFLT);
-    signal_helper(SIGSTOP);
     signal_helper(SIGTSTP);
     signal_helper(SIGSYS);
     signal_helper(SIGTERM);
@@ -46,4 +46,7 @@ int main() {
     signal_helper(SIGXCPU);
     signal_helper(SIGXFSZ);
     signal_helper(SIGWINCH);
+    while (1) {
+        sleep(1);
+    }
 }
